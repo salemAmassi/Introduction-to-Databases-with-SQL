@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS llm_output_v2 (
     lo_is_reviewed TINYINT(1) DEFAULT 0 CHECK (lo_is_reviewed IN (0, 1)), -- set default value: 0, check if value either 0 and 1
     lo_model_name VARCHAR(50) DEFAULT 'gpt-3.5', -- Set default value : gpt-3.5
     lo_user_email VARCHAR(100) UNIQUE, -- Ensure no Duplicates
-    lo_rating(2) TINYINT CHECK (lo_rating BETWEEN 1 AND 5), -- check if lo_rating is between 1-5
+    lo_rating TINYINT(2) CHECK (lo_rating BETWEEN 1 AND 5), -- check if lo_rating is between 1-5
 );
 
 -- 2. Delete Structures
@@ -41,7 +41,11 @@ TRUNCATE TABLE llm_output_v2;
 
 -- 3. Modify Existing Structures
 -- 3.1 Change Table Name
+ALTER TABLE llm_output_v2 RENAME TO llm_output_constrained;
+RENAME TABLE llm_output_constrained TO llm_output_v2;
 -- 3.2 Change Column Structure (Name, data type, constraint)
+ALTER TABLE CHANGE lo_model_name CHAR(10);
+
 -- 3.3 Delete Column
 -- 3.4 Add new Column
 
