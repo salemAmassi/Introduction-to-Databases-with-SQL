@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS llm_output_v2 (
     lo_is_reviewed TINYINT(1) DEFAULT 0 CHECK (lo_is_reviewed IN (0, 1)), -- set default value: 0, check if value either 0 and 1
     lo_model_name VARCHAR(50) DEFAULT 'gpt-3.5', -- Set default value : gpt-3.5
     lo_user_email VARCHAR(100) UNIQUE, -- Ensure no Duplicates
-    lo_rating TINYINT CHECK (lo_rating BETWEEN 1 AND 5), -- check if lo_rating is between 1-5
+    lo_rating(2) TINYINT CHECK (lo_rating BETWEEN 1 AND 5), -- check if lo_rating is between 1-5
 );
 
 -- 2. Delete Structures
@@ -46,3 +46,5 @@ TRUNCATE TABLE llm_output_v2;
 -- 3.4 Add new Column
 
 -- 4. Define Constraints using ALTER
+
+
