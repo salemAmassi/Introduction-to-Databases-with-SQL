@@ -7,8 +7,8 @@ USE llm_tracking_db;
 -- 1.1 Create llm_output (v1): without any constraint
 CREATE TABLE IF NOT EXISTS llm_output_v1 (
     lo_id INT ,
-    lo_text VARCHAR(200) ,
-    lo_prompt VARCHAR(200)  ,
+    lo_prompt TEXT  ,
+    lo_text TEXT ,
     lo_date_created TIMESTAMP ,
     lo_is_reviewed TINYINT(1),
     lo_model_name VARCHAR(50) ,
@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS llm_output_v1 (
 CREATE TABLE IF NOT EXISTS llm_output_v2 (
     lo_id INT PRIMARY KEY AUTO_INCREMENT, -- primary key + Auto increase the ID
     lo_prompt VARCHAR(200)  NOT NULL, -- no blank values
-    lo_text VARCHAR(200) NOT NULL, -- no blank values
+    lo_text TEXT NOT NULL, -- no blank values
     lo_date_created TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- set default value the current timestamp
     lo_is_reviewed TINYINT(1) DEFAULT 0 CHECK (lo_is_reviewed IN (0, 1)), -- set default value: 0, check if value either 0 and 1
     lo_model_name VARCHAR(50) DEFAULT 'gpt-3.5', -- Set default value : gpt-3.5
