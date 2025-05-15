@@ -27,6 +27,7 @@ CREATE TABLE IF NOT EXISTS llm_output_v2 (
     lo_model_name VARCHAR(50) DEFAULT 'gpt-3.5', -- Set default value : gpt-3.5
     lo_user_email VARCHAR(100) UNIQUE, -- Ensure no Duplicates
     lo_rating TINYINT(2) CHECK (lo_rating BETWEEN 1 AND 5), -- check if lo_rating is between 1-5
+    lo_prompt_category VARCHAR(50)
 );
 
 -- 2. Delete Structures
