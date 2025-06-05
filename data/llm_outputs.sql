@@ -2445,3 +2445,5 @@ VALUES (
 1,
 'Storytelling'
 );
+
+UPDATE llm_output_v2 SET lo_rating = NULL WHERE lo_rating >=0 AND NOT lo_is_reviewed;
